@@ -36,7 +36,6 @@ class RegisterView(CreateAPIView):
 
 # ===========================================================
 @extend_schema(tags=['Expenses'])
-               # responses=ExpenseSerializer
 class ExpenseCreateView(CreateAPIView):
     queryset = Expenses.objects.all()
     serializer_class = ExpenseSerializer
@@ -73,10 +72,13 @@ class ExpenseDeleteView(DestroyAPIView):
         instance = self.get_object()
         response_data = {
             "pk": instance.pk,
-            "price": instance.price,
+            "price": instance.amount,
             "description": instance.description
         }
         instance.delete()
+        return response_data
+
+
 
 
 @extend_schema(tags=['Balance'])
