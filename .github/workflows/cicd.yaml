@@ -1,0 +1,24 @@
+name: Drf P25 CI/CD Deployment
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using ssh-key
+      - uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /var/www/sarvinoz
+            git reset --hard origin/master
+            git pull 
+            source /var/www/sarvinoz/Expenses/.venv/bin/activate
+            pip install -r req.txt
+            systemctl restart expenses_sarvinoz.service
