@@ -22,12 +22,7 @@ jobs:
             git pull 
             source /var/www/sarvinoz/Expenses/.venv/bin/activate
             pip install -r req.txt
-      #            make udb
             python3 manage.py makemigrations
             python3 manage.py migrate
-      #            DJANGO_SUPERUSER_USERNAME=admin \
-      #            DJANGO_SUPERUSER_EMAIL=admin@example.com \
-      #            DJANGO_SUPERUSER_PASSWORD=1 
-      #            python3 manage.py createsuperuser --noinput || true
             systemctl restart nginx.service
             systemctl restart expenses_sarvinoz.service
