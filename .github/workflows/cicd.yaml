@@ -22,3 +22,5 @@ jobs:
             source /var/www/sarvinoz/Expenses/.venv/bin/activate
             pip install -r req.txt
             systemctl restart expenses_sarvinoz.service
+            
+            
