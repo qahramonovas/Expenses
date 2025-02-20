@@ -2,7 +2,7 @@ name: Drf P25 CI/CD Deployment
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ master ]
 
 jobs:
   deploy:
@@ -16,9 +16,9 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-              cd /var/www/sarvinoz
-              git reset --hard origin/master
-              git pull 
-              source /var/www/sarvinoz/Expenses/.venv/bin/activate
-              pip install -r req.txt
-              systemctl restart expenses_sarvinoz.service
+            cd /var/www/sarvinoz
+            git reset --hard origin/master
+            git pull 
+            source /var/www/sarvinoz/Expenses/.venv/bin/activate
+            pip install -r req.txt
+            systemctl restart expenses_sarvinoz.service
